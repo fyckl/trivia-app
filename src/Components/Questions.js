@@ -3,7 +3,14 @@ import Question from './Question'
 import {Context} from "./Context"
 
 export default function Questions(props) {
-  const {arrQuestions, checkAnswers, playAgain, correctAnswers, reset,score} = useContext(Context)
+  const {
+    arrQuestions, 
+    checkAnswers, 
+    playAgain, 
+    correctAnswers, 
+    reset, 
+    score
+  } = useContext(Context)
   const questions = arrQuestions.map(item => (
     <Question 
       key={item.question}

@@ -10,15 +10,38 @@ function ContextProvider(props) {
     const [correctAnswers, setCorrectAnswers] = useState(0)
     const [score, setScore] = useState(0)
     const [shuffleAnswers, setShuffleAnswers] = useState(false)
+    const [selectedAnswers, setSelectedAnswers] = useState([])
 
     function quizStart(){
       setShuffleAnswers(true)
       setStartQuiz(true)
     }
 
+    function newSelectedAnswersArr(){
+      setSelectedAnswers(() => {
+        const newArr = []
+        arrQuestions.forEach(item => {
+          newArr.push({id: item.correct_answer, selectedAnswer: ""}) 
+        });
+        return newArr
+      })
+    }
+
+    useEffect(() => {
+      newSelectedAnswersArr()
+    }, [arrQuestions])
+
+    console.log(selectedAnswers)
+
     function checkAnswers(){
       setShuffleAnswers(false)
       setPlayAgain(true)
+      setCorrectAnswers(() => {
+        const correctAnswersArr = selectedAnswers.filter(item => (
+          item.selectedAnswer === item.id
+        )) 
+        return correctAnswersArr.length
+      })
     }
 
     useEffect(() => {
@@ -57,7 +80,9 @@ function ContextProvider(props) {
                 correctAnswers,
                 reset,
                 score,
-                shuffleAnswers
+                shuffleAnswers,
+                setSelectedAnswers,
+                selectedAnswers
         }}>
             {props.children}
         </Context.Provider>
