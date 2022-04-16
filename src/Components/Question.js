@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Answer from './Answer'
 import { Context } from "./Context"
 
 function Question({question, incorrectAnswers, correctAnswer}) {
+
   const arrAnswers = incorrectAnswers.concat(correctAnswer)
   const [shuffledAnswers, setShuffledAnswers] = useState([])
-  const {shuffleAnswers} = useContext(Context)
+  const { isShuffleAnswers } = useContext(Context)
   
   function shuffleArr(arr){
     
@@ -26,13 +27,13 @@ function Question({question, incorrectAnswers, correctAnswer}) {
   }
 
   useEffect(() => {
-    if(shuffleAnswers){
+    if(isShuffleAnswers){
       setShuffledAnswers(shuffleArr(arrAnswers))
     }
-  },[shuffleAnswers])
+  }, [isShuffleAnswers])
 
   const answers = shuffledAnswers.map((item) => {
-      return <Answer key={item} answers={item} correctanswer={correctAnswer}/>
+      return <Answer key={item} answers={item} correctAnswer={correctAnswer}/>
   })
 
   return (

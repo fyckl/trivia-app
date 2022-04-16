@@ -1,20 +1,21 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 
-const Context = React.createContext()
+const Context = createContext()
 
 function ContextProvider(props) {
 
-    const [startQuiz, setStartQuiz] = useState(false)
+    const [isStartQuiz, setIsStartQuiz] = useState(false)
     const [arrQuestions, setArrQuestions] = useState([])
-    const [playAgain, setPlayAgain] = useState(false)
+    const [isPlayAgain, setIsPlayAgain] = useState(false)
+    const [isShuffleAnswers, setIsShuffleAnswers] = useState(false)
+    const [isAPIError, setIsAPIError] = useState(false)
     const [correctAnswers, setCorrectAnswers] = useState(0)
     const [score, setScore] = useState(0)
-    const [shuffleAnswers, setShuffleAnswers] = useState(false)
     const [selectedAnswers, setSelectedAnswers] = useState([])
 
-    function quizStart(){
-      setShuffleAnswers(true)
-      setStartQuiz(true)
+    function startQuiz(){
+      setIsShuffleAnswers(true)
+      setIsStartQuiz(true)
     }
 
     function newSelectedAnswersArr(){
@@ -27,43 +28,44 @@ function ContextProvider(props) {
       })
     }
 
-    useEffect(() => {
-      newSelectedAnswersArr()
-    }, [arrQuestions])
-
-    console.log(selectedAnswers)
-
     function checkAnswers(){
-      setShuffleAnswers(false)
-      setPlayAgain(true)
+      setIsShuffleAnswers(false)
+      setIsPlayAgain(true)
       setCorrectAnswers(() => {
         const correctAnswersArr = selectedAnswers.filter(item => (
           item.selectedAnswer === item.id
-        )) 
-        return correctAnswersArr.length
+          )) 
+          return correctAnswersArr.length
+        })
+      }
+      
+      
+    function reset(){
+      setArrQuestions([])
+      getQuestions()
+      setIsPlayAgain(false)
+      setCorrectAnswers(0)
+      setIsShuffleAnswers(true)
+    }
+    
+    function getQuestions(){
+      fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple&encode=base64')
+      .then(res=> res.json())
+      .then(data=> setArrQuestions(data.results))
+      .catch(err => {
+        setIsStartQuiz(false)
+        setIsAPIError(true)
       })
     }
 
     useEffect(() => {
       setScore(prevState => prevState + correctAnswers)
     }, [correctAnswers])
-
-    function reset(){
-      setArrQuestions([])
-      getQuestions()
-      setPlayAgain(false)
-      setCorrectAnswers(0)
-      setShuffleAnswers(true)
-    }
-
-    function getQuestions(){
-      fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple&encode=base64')
-      .then(res=> res.json())
-      .then(data=> setArrQuestions(data.results))
-    }
-
     
-    // console.log(arrQuestions)
+    useEffect(() => {
+      newSelectedAnswersArr()
+    }, [arrQuestions])
+    
     useEffect(() => {
       getQuestions()
     }, [])
@@ -71,18 +73,19 @@ function ContextProvider(props) {
     return(
         <Context.Provider 
             value={{
-                quizStart, 
                 startQuiz, 
+                isStartQuiz, 
                 arrQuestions,
                 setCorrectAnswers,
                 checkAnswers,
-                playAgain,
+                isPlayAgain,
                 correctAnswers,
                 reset,
                 score,
-                shuffleAnswers,
+                isShuffleAnswers,
                 setSelectedAnswers,
-                selectedAnswers
+                selectedAnswers,
+                isAPIError
         }}>
             {props.children}
         </Context.Provider>

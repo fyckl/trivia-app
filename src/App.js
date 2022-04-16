@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Start from "./Components/Start";
 import Questions from "./Components/Questions";
-import Answers from "./Components/Answer";
+import Error from "./Components/Error"; 
+import Loading from "./Components/Loading";
 import { Context } from "./Components/Context"
-function App() {
-  const {quizStart, startQuiz} = useContext(Context)
 
+function App() {
+  const { startQuiz, isStartQuiz, arrQuestions , isAPIError} = useContext(Context)
+  const renderQuestionsOrLoading = arrQuestions.length === 5 ? <Questions /> : <Loading />
+  const renderQuiz = isStartQuiz ? renderQuestionsOrLoading : <Start start={startQuiz}/>
+  
   return (
     <div className="main-container">
-      {startQuiz ? <Questions /> : <Start start={quizStart}/>}
+      {isAPIError ? <Error /> : renderQuiz}
     </div>
   );
 

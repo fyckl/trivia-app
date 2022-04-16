@@ -133,3 +133,9 @@ body {
   margin-top: 5px;
   opacity: 60%;
 }
+.loading{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 275px;
+}
