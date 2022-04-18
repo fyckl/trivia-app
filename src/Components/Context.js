@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 
 const Context = createContext()
+const useAppContext = () => useContext(Context);
 
 function ContextProvider(props) {
 
@@ -92,4 +93,4 @@ function ContextProvider(props) {
     )
 }
 
-export {ContextProvider, Context}
+export {ContextProvider, Context, useAppContext}

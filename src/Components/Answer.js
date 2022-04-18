@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Context } from "./Context"
+import { Context, useAppContext } from "./Context"
+import { Buffer } from 'buffer'
 
 export default function Answer({ answers, correctAnswer}) {
 
@@ -7,20 +8,22 @@ export default function Answer({ answers, correctAnswer}) {
     isPlayAgain, 
     selectedAnswers, 
     setSelectedAnswers
-  } = useContext(Context)
+  } = useAppContext()
   
-  const isSelected = (answer) => answer.selectedAnswer !== answers
-  
+  const selectedAnswer = (answer) => answer.selectedAnswer !== answers
+  const isSelected = selectedAnswers.every(selectedAnswer)
+
   const selectedAnswerClass = 
   !isPlayAgain ? 
-  (selectedAnswers.every(isSelected) ? "answer-button" : "selected-answer") : 
-  (selectedAnswers.every(isSelected) ? "answer-button" : "incorrect-answer")
+  (isSelected ? "answer-button" : "selected-answer") : 
+  (isSelected ? "answer-button" : "incorrect-answer")
 
   const buttonClass = 
   (isPlayAgain && (correctAnswer === answers)) ? 
   "correct-answer" : 
   selectedAnswerClass
 
+  const decodedAnswers = Buffer.from(answers, 'base64').toString()
   function selectAnswer(){
     setSelectedAnswers(prevState => prevState.map(item => {
       return correctAnswer === item.id ? {...item, selectedAnswer: answers} : {...item}
@@ -33,7 +36,7 @@ export default function Answer({ answers, correctAnswer}) {
           onClick={selectAnswer} 
           disabled={isPlayAgain}
         >
-          {atob(answers)}
+          {decodedAnswers}
         </button>
   )
 }

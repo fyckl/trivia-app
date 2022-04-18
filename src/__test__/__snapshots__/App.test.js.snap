@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly to match snapshot 1`] = `"<div class=\\"main-container\\"><div class=\\"text-center questions-container\\" data-testid=\\"container\\"><h2 class=\\"karla\\" data-testid=\\"header\\">Quizzical</h2><h3 class=\\"karla\\" data-testid=\\"header-2\\">A game of trivia</h3><button name=\\"start-quiz\\" class=\\"start-button\\" data-testid=\\"button\\">Start Quiz</button></div></div>"`;
+
+exports[`renders correctly to match snapshot if arrQuestions length is 5 and isStartQuiz true 1`] = `"<div class=\\"main-container\\"><h3 class=\\"karla text-center\\">Internal server error, please try again later (┬┬﹏┬┬)</h3></div>"`;
+
+exports[`renders correctly to match snapshot if isStartQuiz is true 1`] = `"<div class=\\"main-container\\"><h3 class=\\"karla text-center\\">Internal server error, please try again later (┬┬﹏┬┬)</h3></div>"`;
+
+exports[`renders correctly to match snapshot if there is an API error 1`] = `"<div class=\\"main-container\\"><h3 class=\\"karla text-center\\">Internal server error, please try again later (┬┬﹏┬┬)</h3></div>"`;
