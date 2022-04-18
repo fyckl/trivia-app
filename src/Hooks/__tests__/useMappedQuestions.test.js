@@ -4,7 +4,7 @@ import useMappedQuestions from "../useMappedQuestions"
 import { render, fireEvent, cleanup, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
-test("useMappedQuestions returns expected array", () => {
+test("useMappedQuestions returns expected array length", () => {
     const array=([
         {question: "test1",
         correct_answer: "test1",

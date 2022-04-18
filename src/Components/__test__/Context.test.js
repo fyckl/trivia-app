@@ -9,3 +9,12 @@
 
 
 
+// test("startQuiz functions correctly", () => {
+//     const contextValues = {
+//         startQuiz: 
+//     }
+//     jest
+//       .spyOn(Context, 'useAppContext')
+//       .mockImplementation(() => contextValues);
+
+// })

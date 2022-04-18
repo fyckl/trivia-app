@@ -60,7 +60,7 @@ test("renders correctly to match snapshot", () => {
 })
 
 
-test("check answers button conditonally renders", () => {
+test("check answers button conditionally renders", () => {
     const contextValues = {
         arrQuestions: [], 
         checkAnswers: [], 
