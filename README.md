@@ -11,5 +11,5 @@ Run the following commands to setup, given node and npm is available:
 ## Running Tests
 Uses Jest and Enzyme for testing
 
-..* To run tests, run `npm test` on the project root
-..* To run a coverage test, run `npm test -- --coverage --watchAll`
+  - To run tests, run `npm test` on the project root
+  - To run a coverage test, run `npm test -- --coverage --watchAll`
