@@ -1,7 +1,6 @@
-import React, { useContext } from 'react'
-import Question from './Question'
+import React from 'react'
 import useMappedQuestions from '../Hooks/useMappedQuestions'
-import { Context, useAppContext } from "./Context"
+import { useAppContext } from "./Context"
 
 export default function Questions(props) {
   const {
@@ -13,16 +12,6 @@ export default function Questions(props) {
     score
   } = useAppContext()
 
-  // function questions(arr){ arr.map(item => (
-  //   <Question 
-  //     key={item.question}
-  //     question={item.question} 
-  //     correctAnswer={item.correct_answer} 
-  //     incorrectAnswers={item.incorrect_answers}
-  //   />
-  // ))
-  // }
-  
   return (
     <div className='text-center questions-container' data-testid="container">
       {useMappedQuestions(arrQuestions)}

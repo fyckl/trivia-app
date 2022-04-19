@@ -1,6 +1,6 @@
 import React from "react"
 import Start from "../Start"
-import { render, fireEvent, cleanup, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
 let getByTestId
@@ -29,23 +29,16 @@ test("Headings render with correct classNames", () => {
 
 test("Container has the correct classNames", () => {
     const containerEl = getByTestId('container')
-
     expect(containerEl.className).toBe("text-center questions-container")
 })
 
    
 test("Button has the correct className", () => {
-    
     const buttonEl = getByTestId('button')
-
     expect(buttonEl.className).toBe('start-button')
 })
 
 test("Button has the correct text", () => {
-
-    
     const buttonEl = getByTestId('button')
-
     expect(buttonEl.textContent).toBe('Start Quiz')
 })
-    

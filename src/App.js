@@ -3,7 +3,7 @@ import Start from "./Components/Start";
 import Questions from "./Components/Questions";
 import Error from "./Components/Error"; 
 import Loading from "./Components/Loading";
-import { Context, useAppContext } from "./Components/Context"
+import { useAppContext } from "./Components/Context"
 
 function App() {
   const { 

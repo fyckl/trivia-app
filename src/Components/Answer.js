@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Context, useAppContext } from "./Context"
+import React from 'react'
+import { useAppContext } from "./Context"
 import { Buffer } from 'buffer'
 
 export default function Answer({ answers, correctAnswer}) {

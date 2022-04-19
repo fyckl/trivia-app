@@ -93,4 +93,4 @@ function ContextProvider(props) {
     )
 }
 
-export {ContextProvider, Context, useAppContext}
+export { ContextProvider, Context, useAppContext }

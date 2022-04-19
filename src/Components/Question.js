@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
-import Answer from './Answer'
-import { Context, useAppContext } from "./Context"
+import React, { useState, useEffect } from 'react'
+import { useAppContext } from "./Context"
 import { Buffer } from 'buffer'
 import useShuffleArr from '../Hooks/useShuffleArr'
 import useMappedAnswers from "../Hooks/useMappedAnswers"
