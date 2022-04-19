@@ -8,7 +8,6 @@ Run the following commands to setup, given node and npm is available:
   4. npm start 
 
 ## Running Tests
-Run Test
+
   1. npm test 
-Run Test Coverage
-  1. npm test -- --coverage --watchAll 
+  2. npm test -- --coverage --watchAll 
