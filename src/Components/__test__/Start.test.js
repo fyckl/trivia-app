@@ -10,7 +10,6 @@ beforeEach(() => {
     getByTestId = component.getByTestId
 })
 
-
 test("Headings render with correct text", () => {
     const headerEl = getByTestId('header')
     const headerElTwo = getByTestId('header-2')
