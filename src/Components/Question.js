@@ -19,9 +19,6 @@ function Question({question, incorrectAnswers, correctAnswer}) {
 
   const mappedAnswers = useMappedAnswers(shuffledAnswers, correctAnswer)
   
-  // .map((item) => {
-  //     return <Answer key={item} answers={item} correctAnswer={correctAnswer}/>
-  // })
   const decodedQuestion = Buffer.from(question, 'base64').toString()
   return (
     <div className='question-container' data-testid="container">
